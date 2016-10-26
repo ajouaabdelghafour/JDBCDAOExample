@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
+
+//Comment added
 public class Test {
 	static ClientDAO manipuler = new ClientDAO();
 	private static Client saisirClient(){
@@ -17,11 +19,11 @@ public class Test {
 			}while(manipuler.rechercherIdClient(id)!=null);
 			System.out.println("Saisir nom :");
 			String nom = sc.next();
-			System.out.println("Saisir prénom :");
+			System.out.println("Saisir prÃ©nom :");
 			String prenom = sc.next();
 			System.out.println("Saisir adresse :");
 			String adresse = sc.next();
-			System.out.println("Saisir téléphone :");
+			System.out.println("Saisir tÃ©lÃ©phone :");
 			int telephone = sc.nextInt();
 			return new Client(id, nom, prenom, adresse, telephone);
 		}catch (Exception e) {
@@ -50,7 +52,7 @@ public class Test {
 					if(c!=null){
 						int e= manipuler.insererClient(c);
 					if(e>0)
-						System.out.println("Client ajouté ");
+						System.out.println("Client ajoutÃ© ");
 					else
 						System.out.println("Erreur !!!");
 					}
@@ -59,7 +61,7 @@ public class Test {
 					if(c!=null){
 					int e= manipuler.insererClient(c);
 					if(e>0)
-						System.out.println("Client ajouté ");
+						System.out.println("Client ajoutÃ© ");
 					else
 						System.out.println("Erreur !!!");
 					}
