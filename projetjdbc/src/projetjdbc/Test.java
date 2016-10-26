@@ -81,7 +81,7 @@ public class Test {
 		}
 		
 		CommandeDAO cmd = new CommandeDAO();
-		Date date = new Date(2016, 5, 3);
+		//Date date = new Date(2016, 5, 3);
 		Calendar cal = Calendar.getInstance();
 		cal.set(2016, 4, 3);
 		Client c=new Client(5, "Ali");
