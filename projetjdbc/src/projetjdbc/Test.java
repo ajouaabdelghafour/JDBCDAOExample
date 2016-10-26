@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 
 //Comment added
+//Another comment added on Eclipse
 public class Test {
 	static ClientDAO manipuler = new ClientDAO();
 	private static Client saisirClient(){
