@@ -5,6 +5,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
+/*
+ * 
+ */
 public class Test {
 	static ClientDAO manipuler = new ClientDAO();
 	private static Client saisirClient(){
