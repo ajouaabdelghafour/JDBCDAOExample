@@ -1,43 +1,46 @@
 package projetjdbc;
 
-import java.sql.*;
-import java.util.Iterator;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Connexion {
 	private String url = "jdbc:postgresql://localhost:5432/tppca";
 	private String username = "postgres";
 	private String password = "aze";
-	Statement st = null;
-	Connection cn;
+	private static Connexion instance = null;
+	private static Connection cnx;
 
-	public Statement getConnexion() {
+	public static Connexion getInstance() {
+		if (instance == null) {
+			instance = new Connexion();
+		}
+		return instance;
+	}
+
+	private Connexion() {
+		this.connect();
+	}
+
+	public void connect() {
 
 		try {
 			Class.forName("org.postgresql.Driver");
-			cn = DriverManager.getConnection(url, username, password);
-			st = cn.createStatement();
+			cnx = DriverManager.getConnection(url, username, password);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		return st;
 	}
 
 	public Connection getCnx() {
-		try {
-			Class.forName("org.postgresql.Driver");
-			cn = DriverManager.getConnection(url, username, password);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-		return cn;
+
+		return cnx;
 	}
 
-	public void fermer() {
+	public void disconnect() {
 		try {
-			if (st != null)
-				st.close();
-			if (cn != null)
-				cn.close();
+			if (cnx != null)
+				cnx.close();
 		} catch (Exception e) {
 		}
 	}

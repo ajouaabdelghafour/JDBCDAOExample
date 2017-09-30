@@ -2,6 +2,7 @@ package projetjdbc;
 
 import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class CommandeDAO {
 	private PreparedStatement st;
 	
 	public CommandeDAO(){
-		cnx = new Connexion();
+		cnx = Connexion.getInstance();
 	}
 	
 	public int insererCommande(Commande c){
@@ -33,7 +34,7 @@ public class CommandeDAO {
 		  e.printStackTrace();
 		}
 		finally{
-			cnx.fermer();
+			cnx.disconnect();
 		}
 		return res;
 	}
@@ -58,7 +59,7 @@ public class CommandeDAO {
 			System.out.println(e.getMessage());
 		}
 		finally{
-			cnx.fermer();
+			cnx.disconnect();
 		}
 		return res;
 	}
@@ -74,7 +75,7 @@ public class CommandeDAO {
 			System.out.println(e.getMessage());
 		}
 		finally{
-			cnx.fermer();
+			cnx.disconnect();
 		}
 		return res;
 	}
@@ -82,8 +83,9 @@ public class CommandeDAO {
 	public ArrayList<Commande> tousCommandes(){
 		ArrayList<Commande> lstCommandes = null;
 		try{
-			Statement st = cnx.getConnexion();
-			String req ="SELECT * FROM commande"; 
+			
+			String req ="SELECT * FROM commande";
+			cnx.getCnx().prepareStatement(req);
 			ResultSet res = st.executeQuery(req);
 			lstCommandes = new ArrayList<>();
 			while(res.next()){
@@ -102,7 +104,7 @@ public class CommandeDAO {
 			e.printStackTrace();
 		}
 		finally{
-			cnx.fermer();
+			cnx.disconnect();
 		}
 		return lstCommandes;
 	}
@@ -128,7 +130,7 @@ public class CommandeDAO {
 			e.printStackTrace();
 		}
 		finally{
-			cnx.fermer();
+			cnx.disconnect();
 		}
 		return lstCommandes;
 	}
@@ -156,7 +158,7 @@ public class CommandeDAO {
 			e.printStackTrace();
 		}
 		finally{
-			cnx.fermer();
+			cnx.disconnect();
 		}
 		return lstCommandes;
 	}

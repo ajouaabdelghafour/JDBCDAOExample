@@ -3,6 +3,7 @@ package projetjdbc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -11,8 +12,13 @@ public class ClientDAO implements DAO{
 	private Statement st;
 	
 	public ClientDAO(){
-		cnx = new Connexion();
-		st = cnx.getConnexion();
+		cnx = Connexion.getInstance();
+		try {
+			st = cnx.getCnx().createStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public int insererClient(Client c){
@@ -29,14 +35,19 @@ public class ClientDAO implements DAO{
 			System.out.println(e.getMessage());
 		}
 		finally{
-			cnx.fermer();
+			cnx.disconnect();
 		}
 		return res;
 	}
 	public int updateClient(Client c){
 		int res = 0;
 		try{
-			st = cnx.getConnexion();
+			try {
+				st = cnx.getCnx().createStatement();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			int id = c.getId();
 			String nom = c.getNom();
 			String prenom = c.getPrenom();
@@ -48,7 +59,7 @@ public class ClientDAO implements DAO{
 			System.out.println(e.getMessage());
 		}
 		finally{
-			cnx.fermer();
+			cnx.disconnect();
 		}
 		return res;
 	}
@@ -56,14 +67,19 @@ public class ClientDAO implements DAO{
 	public int deleteClient(int id){
 		int res = 0;
 		try{
-			st = cnx.getConnexion();
+			try {
+				st = cnx.getCnx().createStatement();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
 			String req ="DELETE FROM client WHERE id="+id; 
 			res = st.executeUpdate(req);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
 		finally{
-			cnx.fermer();
+			cnx.disconnect();
 		}
 		return res;
 	}
@@ -71,7 +87,12 @@ public class ClientDAO implements DAO{
 	public ArrayList<Client> tousClients(){
 		ArrayList<Client> lstClients = null;
 		try{
-			st = cnx.getConnexion();
+			try {
+				st = cnx.getCnx().createStatement();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String req ="SELECT * FROM client"; 
 			ResultSet res = st.executeQuery(req);
 			lstClients = new ArrayList<>();
@@ -88,7 +109,7 @@ public class ClientDAO implements DAO{
 			e.printStackTrace();
 		}
 		finally{
-			cnx.fermer();
+			cnx.disconnect();
 		}
 		return lstClients;
 	}
@@ -96,7 +117,12 @@ public class ClientDAO implements DAO{
 	public Client rechercherIdClient(int id){
 		Client c = null;
 		try{
-			st = cnx.getConnexion();
+			try {
+				st = cnx.getCnx().createStatement();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String req ="SELECT * FROM client WHERE id="+id; 
 			ResultSet res = st.executeQuery(req);
 			if(res.last()){
@@ -107,7 +133,7 @@ public class ClientDAO implements DAO{
 			System.out.println(e.getMessage());
 		}
 		finally{
-			cnx.fermer();
+			cnx.disconnect();
 		}
 		return c;
 	}

@@ -84,21 +84,21 @@ public class Test {
 			default : System.out.println("Choix invalide !!!");
 		}
 		
-		CommandeDAO cmd = new CommandeDAO();
-		//Date date = new Date(2016, 5, 3);
-		Calendar cal = Calendar.getInstance();
-		cal.set(2016, 4, 3);
-		Client c=new Client(5, "Ali");
-		cmd.insererCommande(new Commande(1000, c, 545, cal.getTime()));
-		
-		ArrayList<Commande> lst = cmd.rechercheCommandeClient(222);
-		if(lst!=null)
-			for(Commande cm : lst)
-				System.out.println(cm.toString());
-		ArrayList<Commande> lstD = cmd.rechercheCommande(cal.getTime());
-		if(lstD!=null)
-			for(Commande cl : lstD)
-				System.out.println(cl.toString());
+//		CommandeDAO cmd = new CommandeDAO();
+//		//Date date = new Date(2016, 5, 3);
+//		Calendar cal = Calendar.getInstance();
+//		cal.set(2016, 4, 3);
+//		Client c=new Client(5, "Ali");
+//		cmd.insererCommande(new Commande(1000, c, 545, cal.getTime()));
+//		
+//		ArrayList<Commande> lst = cmd.rechercheCommandeClient(222);
+//		if(lst!=null)
+//			for(Commande cm : lst)
+//				System.out.println(cm.toString());
+//		ArrayList<Commande> lstD = cmd.rechercheCommande(cal.getTime());
+//		if(lstD!=null)
+//			for(Commande cl : lstD)
+//				System.out.println(cl.toString());
 		
 		
 	}
