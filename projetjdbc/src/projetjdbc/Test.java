@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
+<<<<<<< HEAD
 
 
 //Comment added
 //Another comment added on Eclipse
 //Another one from Github editor..... good luck in fetching bro...
+=======
+/*
+ * Class comment added
+ */
+>>>>>>> refs/heads/test
 public class Test {
 	static ClientDAO manipuler = new ClientDAO();
 	private static Client saisirClient(){
