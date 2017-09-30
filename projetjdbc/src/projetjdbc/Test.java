@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
-
+/*
+ * Class comment added
+ */
 public class Test {
 	static ClientDAO manipuler = new ClientDAO();
 	private static Client saisirClient(){
